@@ -10,6 +10,11 @@ gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 UP_WALL = pygame.Rect(0,0,WIDTH,UP_DOWN_BORDER_HEIGHT) # FIXED
 DOWN_WALL = pygame.Rect(0,HEIGHT - UP_DOWN_BORDER_HEIGHT,WIDTH,UP_DOWN_BORDER_HEIGHT) # FIXED
 
+# User events
+
+BALL_OFF_SCREEN_LEFT = pygame.USEREVENT + 1
+BALL_OFF_SCREEN_RIGHT = pygame.USEREVENT + 2
+
 
 def draw_display(game_ball, left_bat,right_bat):
 
@@ -45,9 +50,22 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == BALL_OFF_SCREEN_LEFT:
+                print("left side")
+            if event.type == BALL_OFF_SCREEN_RIGHT:
+                print("right side")
+            
         Bat_class_file.Bat.bat_movement(keys_pressed, LEFT_BAT, RIGHT_BAT)
-        GAME_BALL.ball_movement()
+
+        x = GAME_BALL.ball_movement()
+        
+        if(x == "left side"):
+            pygame.event.post(pygame.event.Event(BALL_OFF_SCREEN_LEFT))
+        elif(x == "right side"):
+            pygame.event.post(pygame.event.Event(BALL_OFF_SCREEN_RIGHT))
+
         draw_display(GAME_BALL, LEFT_BAT, RIGHT_BAT)
+
     pygame.quit()
 
 
