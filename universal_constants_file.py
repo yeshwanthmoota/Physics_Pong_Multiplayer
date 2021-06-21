@@ -1,0 +1,29 @@
+
+# Game screen properties
+WIDTH = 1080
+HEIGHT = 600
+
+FPS = 100
+
+# colors
+WHITE = (255,255,255)
+BLACK = (0,0,0)
+YELLOW = (255,255,0)
+RED = (255,0,0)
+BLUE = (0,0,255)
+GREEN= (0,255,0)
+
+UP_DOWN_BORDER_HEIGHT = 10
+
+# Bat properties
+BAT_WIDTH = WIDTH * 20 / 1080
+BAT_HEIGHT = HEIGHT * 100 / 600
+BAT_X_SPEED = WIDTH * 5 / 1080
+BAT_Y_SPEED = WIDTH * 5 / 600
+
+# Ball properties
+BALL_SIDE = WIDTH * 10 / 1080
+INITIAL_BALL_SPEED = WIDTH * 10 / 1080
+
+# Bat x-restraint
+BAT_X_RESTRIANT = WIDTH * 200 / 1080
