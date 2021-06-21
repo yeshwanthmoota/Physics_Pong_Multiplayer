@@ -5,6 +5,7 @@ import math
 from universal_constants_file import *
 from ball_collision import *
 
+
 class Ball:
 
 
@@ -18,22 +19,21 @@ class Ball:
     def ball_movement(self):
         # points scored
         # for restricting position left and right
-        if self.x <= (RESTRIANT/2) - BALL_SIDE: # off left side of screen 
+        if self.x <= RESTRIANT - BALL_SIDE: # off left side of screen 
             return 1
-        elif self.x >= WIDTH - (RESTRIANT/2) + BALL_SIDE: #off right side of screen
+        elif self.x >= WIDTH - RESTRIANT + BALL_SIDE: #off right side of screen
             return -1
 
         # wall collisions
         # for restricting position up and down
-        if(self.y < 0 + UP_DOWN_BORDER_HEIGHT):
+        if(self.y < 0 + UP_DOWN_BORDER_HEIGHT): # UP_WALL
             self.y = UP_DOWN_BORDER_HEIGHT
-            wall_ball_collision(self)
-            return
-        elif(self.y + BALL_SIDE > HEIGHT -UP_DOWN_BORDER_HEIGHT):
+            code = wall_ball_collision(self)
+            return code
+        elif(self.y + BALL_SIDE > HEIGHT -UP_DOWN_BORDER_HEIGHT): #DOWN_WALL
             self.y = HEIGHT - UP_DOWN_BORDER_HEIGHT - BALL_SIDE
-            wall_ball_collision(self)
-            return
-        
+            code = wall_ball_collision(self)
+            return code  
         self.x += self.current_ball_speed * round(math.cos(self.current_theta),1)
         self.y += self.current_ball_speed * round(math.sin(self.current_theta),1)
         return 0
@@ -41,7 +41,10 @@ class Ball:
 
         
     def draw_ball(self, gameDisplay):
-        pygame.draw.rect(gameDisplay, WHITE, pygame.Rect(self.x, self.y, BALL_SIDE, BALL_SIDE))
+        if (self.x <= RESTRIANT - BALL_SIDE) and (self.x >= WIDTH - RESTRIANT + BALL_SIDE): # off left side of screen 
+            pass # Making Ball dissappear off the screen
+        else:
+            pygame.draw.rect(gameDisplay, WHITE, pygame.Rect(self.x, self.y, BALL_SIDE, BALL_SIDE))
         # r = (self.side) / 2
         # g = math.sqrt(2)
         # pygame.draw.circle(gameDisplay, WHITE, (int(self.x + r*g), int(self.y + r*g)), int(r)) # To print out a circle ball.
