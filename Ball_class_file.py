@@ -54,8 +54,8 @@ class Ball:
     def initial_ball_movement(self): # To provide the initial push to the ball just after a point scored or at the beginning
         self.x = WIDTH/2 - BALL_SIDE/2 # x - position reset
         self.y = HEIGHT/2 - BALL_SIDE/2 # y - position reset
-        degrees_1 = random.randrange(0, 180, 20)
-        degrees_2 = random.randrange(200, 360, 20)
+        degrees_1 = random.randrange(60, 121, 20)
+        degrees_2 = random.randrange(240, 301, 20)
         degrees = random.choice([degrees_1, degrees_2])
         theta = math.radians(degrees)
         self.current_ball_speed = BALL_SPEED
