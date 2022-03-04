@@ -37,16 +37,16 @@ channel2 = pygame.mixer.Channel(1) # Background music channel
 
 #----------------------code for working on terminal----------
 final_path = os.getcwd()
-path_list = final_path.split("\\")
+path_list = final_path.split("//")
 # print(final_path)
-final_path = final_path + "\\" + "music_and_sounds"+ "\\"
+final_path = final_path + "//" + "music_and_sounds"+ "//"
 if path_list[-1] == "Physics_Pong_Multiplayer" or  path_list[-1] == "Physics_Pong_Multiplayer-master":
     pass
 #----------------------code for working on terminal----------
 
 #----------------------code for working on vs code----------
 else:
-    final_path = os.path.dirname(__file__)  + "\\" + "music_and_sounds" + "\\"
+    final_path = os.path.dirname(__file__)  + "//" + "music_and_sounds" + "//"
     # print(final_path)
 #----------------------code for working on vs code----------
 
